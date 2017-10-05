@@ -2,19 +2,11 @@ package models;
 public class Student {
     private String firstName;
     private String lastName;
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
     private String dateOfBirth;
     private int id;
     private String email;
     private String postcode;
+
 
 	public Student(){}
     public Student(int id, String firstName, String lastName, String email, String postcode, String dateOfBirth) {
@@ -66,6 +58,14 @@ public class Student {
 
     public void setPostcode(String postcode) {
         this.postcode = postcode;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
 }

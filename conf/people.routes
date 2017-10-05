@@ -1,0 +1,4 @@
+GET    /                     v1.person.PersonController.list
+POST   /                     v1.person.PersonController.create
+GET    /:id                 v1.person.PersonController.show(id)
+POST    /:id                v1.person.PersonController.update(id)

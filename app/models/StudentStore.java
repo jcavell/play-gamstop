@@ -12,7 +12,11 @@ public class StudentStore {
 
     public StudentStore() {
         students.put(
-                1, new Student(1, "Bobby", "Blobby", "jonny.cavell@gmail.clom", "Kt6 6QT", "01/09/2070"));
+                1, new Student(1, "Bobby", "Blobby", "jonny.cavell@gmail.clom", "Kt6 6QT", "01/09/2070")
+        );
+        students.put(
+                2, new Student(2, "Jimmy", "XXXXXX", "jonny.cavell@gmail.clom", "Kt6 6QT", "01/09/2070")
+        );
     }
 
 
@@ -24,7 +28,7 @@ public class StudentStore {
     }
 
     public Student addStudent(Student student) {
-        int id = students.size();
+        int id = students.size() + 1;
         student.setId(id);
         students.put(id, student);
         return student;
