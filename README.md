@@ -1,22 +1,23 @@
-[<img src="https://img.shields.io/travis/playframework/play-java-rest-api-example.svg"/>](https://travis-ci.org/playframework/play-java-rest-api-example)
+# play-gamstop
 
+A REST API showing Play with a JPA backend.
 
-# play-java-rest-api-example
+To run, make sure you have Java 8 and SBT installed.
 
-A REST API showing Play with a JPA backend.  For the Scala version, please see https://github.com/playframework/play-scala-rest-api-example
+Run the app with `sbt run`
 
-## Best Practices for Blocking API
+There are two endpoints, one that works using an in memory Map that you can browse straight away at http://localhost:9000/
 
-If you look at the controller: https://github.com/playframework/play-java-rest-api-example/blob/master/app/v1/post/PostController.java
-then you can see that when calling out to a blocking API like JDBC, you should put it behind an asynchronous boundary -- in practice, this means using the CompletionStage API to make sure that you're not blocking the rendering thread while the database call is going on in the background.
+The other, under http://localhost:9000/v1/people comes from an in-memory H2 database, accessed via JPA / Hibernate.
 
-```java
-public CompletionStage<Result> list() {
-    return handler.find().thenApplyAsync(posts -> {
-        final List<PostResource> postList = posts.collect(Collectors.toList());
-        return ok(Json.toJson(postList));
-    }, ec.current());
-}
+To add a new person, simply post to this endpoint with Header Content Type set to application/json and the body of e.g.:
 ```
-
-There is more detail in https://www.playframework.com/documentation/latest/ThreadPools -- notably, you can always bump up the number of threads in the rendering thread pool rather than do this -- but it gives you an idea of best practices.
+ {
+   "firstName" : "Jonny",
+   "lastName" : "Cavell",
+   "dateOfBirth" : "adfasfaf",
+   "postcode" : "adfa",
+   "email" : "adfasffa"
+ }
+```
+You should receive a 201 reponse status indicating the resource was successfully created.
